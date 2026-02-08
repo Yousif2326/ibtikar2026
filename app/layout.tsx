@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Noto_Sans } from "next/font/google";
 import "./globals.css";
-
+import { AuthKitProvider } from '@workos-inc/authkit-nextjs/components';
 const notoSans = Noto_Sans({variable:'--font-sans'});
 
 const geistSans = Geist({
@@ -29,8 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-      </body>
+        <AuthKitProvider>{children}</AuthKitProvider>      </body>
     </html>
   );
 }
