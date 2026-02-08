@@ -59,8 +59,8 @@ export function TrialResults({ response, onNewSearch }: TrialResultsProps) {
         <Card>
           <CardContent className="py-12 text-center">
             <p className="text-sm text-muted-foreground">
-              No matching clinical trials found. Try adjusting the patient
-              information and searching again.
+              No clinical trials matched with sufficient confidence (above 30%).
+              Try adjusting the patient information and searching again.
             </p>
           </CardContent>
         </Card>

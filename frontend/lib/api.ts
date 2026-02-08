@@ -1,7 +1,10 @@
 /**
- * API client for communicating with the backend.
- * All requests go through Next.js API routes (server-side proxy)
- * so the backend URL and auth tokens never touch the browser.
+ * API client for communicating with the Next.js API routes.
+ * All requests go through Next.js API routes (server-side)
+ * so credentials and sensitive logic never touch the browser.
+ *
+ * - OCR: /api/ocr (OpenAI Vision GPT-4o)
+ * - Search: /api/search (ChromaDB Cloud vector search + GPT-4o RAG pipeline)
  */
 
 const API_BASE = '/api';
@@ -64,7 +67,7 @@ async function handleResponse<T>(res: Response): Promise<T> {
 
 /**
  * Upload an image for OCR processing.
- * The image is sent to the Next.js API route which proxies to the backend.
+ * The image is sent to the Next.js API route which uses OpenAI Vision.
  */
 export async function uploadForOCR(file: File | Blob): Promise<OCRResponse> {
   const formData = new FormData();
@@ -80,12 +83,16 @@ export async function uploadForOCR(file: File | Blob): Promise<OCRResponse> {
 
 /**
  * Send OCR text for clinical trial matching via the RAG pipeline.
+ * Calls /api/search which runs the full pipeline server-side:
+ *   1. GPT-4o extracts patient criteria
+ *   2. ChromaDB Cloud vector search
+ *   3. GPT-4o re-ranks results
  */
 export async function matchTrials(
   ocrText: string,
   nResults: number = 10
 ): Promise<MatchResponse> {
-  const res = await fetch(`${API_BASE}/match`, {
+  const res = await fetch(`${API_BASE}/search`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ ocr_text: ocrText, n_results: nResults }),
