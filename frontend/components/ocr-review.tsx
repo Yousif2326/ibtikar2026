@@ -35,12 +35,12 @@ export function OcrReview({ ocrText, onSubmit, isProcessing }: OcrReviewProps) {
   if (isProcessing) {
     return (
       <Card className="mx-auto max-w-2xl">
-        <CardContent className="flex flex-col items-center justify-center py-16">
+        <CardContent className="flex flex-col items-center justify-center py-12 sm:py-16">
           <IconLoader2 className="h-8 w-8 animate-spin text-primary" />
           <p className="mt-4 text-sm text-muted-foreground">
             Matching clinical trials...
           </p>
-          <p className="mt-1 text-xs text-muted-foreground">
+          <p className="mt-1 text-center text-xs text-muted-foreground">
             Analyzing patient criteria and searching 70,000+ trials.
             This may take 10-20 seconds.
           </p>
@@ -51,38 +51,39 @@ export function OcrReview({ ocrText, onSubmit, isProcessing }: OcrReviewProps) {
 
   return (
     <Card className="mx-auto max-w-2xl">
-      <CardHeader>
-        <CardTitle>Review Extracted Text</CardTitle>
-        <CardDescription>
+      <CardHeader className="px-4 sm:px-6">
+        <CardTitle className="text-base sm:text-lg">Review Extracted Text</CardTitle>
+        <CardDescription className="text-xs sm:text-sm">
           The OCR engine extracted the following text from the uploaded document.
           Please review for accuracy. You can edit any errors before proceeding.
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-4 sm:px-6">
         {isEditing ? (
           <Textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="min-h-[250px] font-mono text-sm"
+            className="min-h-[200px] font-mono text-xs sm:min-h-[250px] sm:text-sm"
             placeholder="Patient information..."
           />
         ) : (
-          <div className="max-h-[400px] overflow-y-auto rounded-lg border bg-muted/30 p-4">
-            <pre className="whitespace-pre-wrap font-mono text-sm leading-relaxed text-foreground">
+          <div className="max-h-[300px] overflow-y-auto rounded-lg border bg-muted/30 p-3 sm:max-h-[400px] sm:p-4">
+            <pre className="whitespace-pre-wrap font-mono text-xs leading-relaxed text-foreground sm:text-sm">
               {text || '(No text extracted. Please go back and try a different image.)'}
             </pre>
           </div>
         )}
       </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex flex-col gap-2 px-4 sm:flex-row sm:justify-between sm:px-6">
         <Button
           variant="outline"
           onClick={() => setIsEditing(!isEditing)}
+          className="h-11 w-full sm:h-10 sm:w-auto"
         >
           <IconEdit className="h-4 w-4" />
           {isEditing ? 'Preview' : 'Edit Text'}
         </Button>
-        <Button onClick={handleSubmit} disabled={!text.trim()}>
+        <Button onClick={handleSubmit} disabled={!text.trim()} className="h-11 w-full sm:h-10 sm:w-auto">
           <IconSearch className="h-4 w-4" />
           Find Matching Trials
         </Button>

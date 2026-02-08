@@ -147,7 +147,7 @@ export function ImageCapture({ onImageCaptured, isProcessing }: ImageCaptureProp
   if (isProcessing) {
     return (
       <Card className="mx-auto max-w-lg">
-        <CardContent className="flex flex-col items-center justify-center py-16">
+        <CardContent className="flex flex-col items-center justify-center py-12 sm:py-16">
           <IconLoader2 className="h-8 w-8 animate-spin text-primary" />
           <p className="mt-4 text-sm text-muted-foreground">
             Processing image with OCR...
@@ -163,14 +163,14 @@ export function ImageCapture({ onImageCaptured, isProcessing }: ImageCaptureProp
   return (
     <div className="mx-auto max-w-lg space-y-4">
       <Card>
-        <CardHeader>
-          <CardTitle>Capture Patient Document</CardTitle>
-          <CardDescription>
+        <CardHeader className="px-4 sm:px-6">
+          <CardTitle className="text-base sm:text-lg">Capture Patient Document</CardTitle>
+          <CardDescription className="text-xs sm:text-sm">
             Take a photo or upload an image of the patient&apos;s information.
             All data is processed in memory and never stored.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 px-4 sm:px-6">
           {cameraError && (
             <div className="rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2 text-xs text-destructive">
               {cameraError}
@@ -181,43 +181,43 @@ export function ImageCapture({ onImageCaptured, isProcessing }: ImageCaptureProp
             <div className="grid grid-cols-2 gap-3">
               <Button
                 variant="outline"
-                className="h-24 flex-col gap-2"
+                className="h-20 flex-col gap-2 active:bg-muted sm:h-24"
                 onClick={startCamera}
               >
                 <IconCamera className="h-6 w-6" />
-                <span>Camera</span>
+                <span className="text-sm">Camera</span>
               </Button>
               <Button
                 variant="outline"
-                className="h-24 flex-col gap-2"
+                className="h-20 flex-col gap-2 active:bg-muted sm:h-24"
                 onClick={() => {
                   setMode('upload');
                   fileInputRef.current?.click();
                 }}
               >
                 <IconUpload className="h-6 w-6" />
-                <span>Upload</span>
+                <span className="text-sm">Upload</span>
               </Button>
             </div>
           )}
 
           {mode === 'camera' && (
             <div className="space-y-3">
-              <div className="relative overflow-hidden rounded-lg bg-black">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-black sm:aspect-video">
                 <video
                   ref={videoRef}
                   autoPlay
                   playsInline
                   muted
-                  className="w-full"
+                  className="h-full w-full object-cover"
                 />
               </div>
               <div className="flex gap-2">
-                <Button onClick={captureFrame} className="flex-1">
+                <Button onClick={captureFrame} className="h-11 flex-1 sm:h-10">
                   <IconCamera className="h-4 w-4" />
                   Capture
                 </Button>
-                <Button variant="outline" onClick={stopCamera}>
+                <Button variant="outline" onClick={stopCamera} className="h-11 sm:h-10">
                   <IconX className="h-4 w-4" />
                   Cancel
                 </Button>
@@ -227,14 +227,14 @@ export function ImageCapture({ onImageCaptured, isProcessing }: ImageCaptureProp
 
           {mode === 'upload' && !preview && (
             <div
-              className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-border p-8 transition-colors hover:border-primary/50 hover:bg-muted/50"
+              className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-border p-6 transition-colors hover:border-primary/50 hover:bg-muted/50 active:bg-muted/50 sm:p-8"
               onDragOver={(e) => e.preventDefault()}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
             >
               <IconUpload className="h-8 w-8 text-muted-foreground" />
-              <p className="mt-3 text-sm text-muted-foreground">
-                Drag and drop an image here, or click to browse
+              <p className="mt-3 text-center text-xs text-muted-foreground sm:text-sm">
+                Drag and drop an image here, or tap to browse
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
                 JPEG, PNG, WebP, TIFF up to 10 MB

@@ -67,22 +67,22 @@ export function DashboardClient({ user, signOutAction }: DashboardClientProps) {
 
   return (
     <InactivityGuard timeoutMinutes={15} onTimeout={signOutAction}>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-dvh bg-background">
         {/* Header */}
-        <header className="border-b bg-card">
-          <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
-            <div className="flex items-center gap-2">
-              <IconStethoscope className="h-5 w-5 text-primary" />
-              <span className="text-sm font-semibold">Clinical Trial Matcher</span>
+        <header className="sticky top-0 z-30 border-b bg-card/95 backdrop-blur-sm">
+          <div className="mx-auto flex h-12 max-w-5xl items-center justify-between px-3 sm:h-14 sm:px-4">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <IconStethoscope className="h-5 w-5 shrink-0 text-primary" />
+              <span className="text-xs font-semibold sm:text-sm">Clinical Trial Matcher</span>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-muted-foreground">
+            <div className="flex items-center gap-1.5 sm:gap-3">
+              <span className="hidden text-xs text-muted-foreground xs:inline sm:inline">
                 {user.firstName} {user.lastName}
               </span>
               <form action={signOutAction}>
-                <Button variant="ghost" size="sm" type="submit">
+                <Button variant="ghost" size="sm" type="submit" className="h-8 px-2 sm:h-9 sm:px-3">
                   <IconLogout className="h-4 w-4" />
-                  Sign Out
+                  <span className="hidden sm:inline">Sign Out</span>
                 </Button>
               </form>
             </div>
@@ -90,12 +90,12 @@ export function DashboardClient({ user, signOutAction }: DashboardClientProps) {
         </header>
 
         {/* Progress indicator */}
-        <div className="mx-auto max-w-5xl px-4 pt-6">
-          <div className="mb-6 flex items-center gap-2 text-xs text-muted-foreground">
+        <div className="mx-auto max-w-5xl px-3 pt-4 sm:px-4 sm:pt-6">
+          <div className="mb-4 flex items-center justify-center gap-1.5 text-xs text-muted-foreground sm:mb-6 sm:justify-start sm:gap-2">
             <StepIndicator label="1. Capture" active={step === 'capture'} done={step !== 'capture'} />
-            <div className="h-px w-6 bg-border" />
+            <div className="h-px w-4 bg-border sm:w-6" />
             <StepIndicator label="2. Review" active={step === 'review'} done={step === 'results'} />
-            <div className="h-px w-6 bg-border" />
+            <div className="h-px w-4 bg-border sm:w-6" />
             <StepIndicator label="3. Results" active={step === 'results'} done={false} />
           </div>
 
@@ -103,7 +103,7 @@ export function DashboardClient({ user, signOutAction }: DashboardClientProps) {
           {step !== 'capture' && (
             <button
               onClick={step === 'review' ? handleReset : () => setStep('review')}
-              className="mb-4 inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
+              className="mb-4 inline-flex items-center gap-1 rounded-md px-1 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground active:bg-muted"
             >
               <IconArrowLeft className="h-3 w-3" />
               {step === 'review' ? 'Back to capture' : 'Back to review'}
@@ -112,7 +112,7 @@ export function DashboardClient({ user, signOutAction }: DashboardClientProps) {
 
           {/* Error banner */}
           {error && (
-            <div className="mb-4 rounded-lg border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm text-destructive">
+            <div className="mb-4 rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2.5 text-xs text-destructive sm:px-4 sm:py-3 sm:text-sm">
               {error}
               <button
                 onClick={() => setError(null)}
@@ -148,8 +148,8 @@ export function DashboardClient({ user, signOutAction }: DashboardClientProps) {
         </div>
 
         {/* Footer */}
-        <footer className="mt-12 border-t py-4">
-          <p className="text-center text-xs text-muted-foreground">
+        <footer className="mt-8 border-t px-3 py-4 sm:mt-12 sm:px-4">
+          <p className="text-center text-[11px] text-muted-foreground sm:text-xs">
             All patient data is processed ephemerally and never stored. HIPAA-compliant.
           </p>
         </footer>

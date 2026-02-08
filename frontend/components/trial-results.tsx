@@ -33,39 +33,40 @@ export function TrialResults({ response, onNewSearch }: TrialResultsProps) {
   const { patient_criteria, results } = response;
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6">
+    <div className="mx-auto max-w-3xl space-y-4 sm:space-y-6">
       {/* Patient criteria summary */}
       <PatientSummary criteria={patient_criteria} />
 
       {/* Results header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-lg font-semibold">
+      <div className="flex items-start justify-between gap-3 sm:items-center">
+        <div className="min-w-0">
+          <h2 className="text-base font-semibold sm:text-lg">
             Matching Clinical Trials
           </h2>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-[11px] text-muted-foreground sm:text-xs">
             {results.length} trial{results.length !== 1 ? 's' : ''} found,
             ranked by relevance
           </p>
         </div>
-        <Button variant="outline" size="sm" onClick={onNewSearch}>
+        <Button variant="outline" size="sm" onClick={onNewSearch} className="shrink-0">
           <IconRefresh className="h-4 w-4" />
-          New Search
+          <span className="hidden sm:inline">New Search</span>
+          <span className="sm:hidden">New</span>
         </Button>
       </div>
 
       {/* Trial cards */}
       {results.length === 0 ? (
         <Card>
-          <CardContent className="py-12 text-center">
-            <p className="text-sm text-muted-foreground">
-              No clinical trials matched with sufficient confidence (above 30%).
+          <CardContent className="py-10 text-center sm:py-12">
+            <p className="text-xs text-muted-foreground sm:text-sm">
+              No matching clinical trials found.
               Try adjusting the patient information and searching again.
             </p>
           </CardContent>
         </Card>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {results.map((trial, index) => (
             <TrialCard key={trial.id} trial={trial} rank={index + 1} />
           ))}
@@ -88,14 +89,14 @@ function PatientSummary({ criteria }: { criteria: PatientCriteria }) {
 
   return (
     <Card size="sm">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-sm">
-          <IconUser className="h-4 w-4 text-primary" />
+      <CardHeader className="px-3 sm:px-6">
+        <CardTitle className="flex items-center gap-2 text-xs sm:text-sm">
+          <IconUser className="h-4 w-4 shrink-0 text-primary" />
           Extracted Patient Profile
         </CardTitle>
         <button
           onClick={() => setExpanded(!expanded)}
-          className="absolute right-4 top-4 text-muted-foreground hover:text-foreground"
+          className="absolute right-3 top-3 p-1 text-muted-foreground hover:text-foreground sm:right-4 sm:top-4"
         >
           {expanded ? (
             <IconChevronUp className="h-4 w-4" />
@@ -105,12 +106,12 @@ function PatientSummary({ criteria }: { criteria: PatientCriteria }) {
         </button>
       </CardHeader>
       {expanded && (
-        <CardContent>
+        <CardContent className="px-3 sm:px-6">
           <div className="grid gap-3 sm:grid-cols-2">
             {(criteria.age || criteria.sex) && (
               <div>
-                <p className="text-xs font-medium text-muted-foreground">Demographics</p>
-                <p className="text-sm">
+                <p className="text-[11px] font-medium text-muted-foreground sm:text-xs">Demographics</p>
+                <p className="text-xs sm:text-sm">
                   {[criteria.age && `Age: ${criteria.age}`, criteria.sex]
                     .filter(Boolean)
                     .join(' | ')}
@@ -119,10 +120,10 @@ function PatientSummary({ criteria }: { criteria: PatientCriteria }) {
             )}
             {criteria.conditions?.length > 0 && (
               <div>
-                <p className="text-xs font-medium text-muted-foreground">Conditions</p>
+                <p className="text-[11px] font-medium text-muted-foreground sm:text-xs">Conditions</p>
                 <div className="mt-1 flex flex-wrap gap-1">
                   {criteria.conditions.map((c, i) => (
-                    <Badge key={i} variant="secondary" className="text-xs">
+                    <Badge key={i} variant="secondary" className="text-[10px] sm:text-xs">
                       {c}
                     </Badge>
                   ))}
@@ -131,10 +132,10 @@ function PatientSummary({ criteria }: { criteria: PatientCriteria }) {
             )}
             {criteria.medications?.length > 0 && (
               <div>
-                <p className="text-xs font-medium text-muted-foreground">Medications</p>
+                <p className="text-[11px] font-medium text-muted-foreground sm:text-xs">Medications</p>
                 <div className="mt-1 flex flex-wrap gap-1">
                   {criteria.medications.map((m, i) => (
-                    <Badge key={i} variant="outline" className="text-xs">
+                    <Badge key={i} variant="outline" className="text-[10px] sm:text-xs">
                       {m}
                     </Badge>
                   ))}
@@ -143,10 +144,10 @@ function PatientSummary({ criteria }: { criteria: PatientCriteria }) {
             )}
             {criteria.allergies?.length > 0 && (
               <div>
-                <p className="text-xs font-medium text-muted-foreground">Allergies</p>
+                <p className="text-[11px] font-medium text-muted-foreground sm:text-xs">Allergies</p>
                 <div className="mt-1 flex flex-wrap gap-1">
                   {criteria.allergies.map((a, i) => (
-                    <Badge key={i} variant="destructive" className="text-xs">
+                    <Badge key={i} variant="destructive" className="text-[10px] sm:text-xs">
                       {a}
                     </Badge>
                   ))}
@@ -181,23 +182,23 @@ function TrialCard({ trial, rank }: { trial: TrialMatch; rank: number }) {
 
   return (
     <Card>
-      <CardHeader>
-        <div className="flex items-start gap-3">
-          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+      <CardHeader className="px-3 sm:px-6">
+        <div className="flex items-start gap-2.5 sm:gap-3">
+          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[10px] font-semibold text-primary sm:h-7 sm:w-7 sm:text-xs">
             {rank}
           </div>
           <div className="min-w-0 flex-1">
-            <CardTitle className="text-sm leading-snug">
+            <CardTitle className="text-xs leading-snug sm:text-sm">
               {trial.study_title || trial.id}
             </CardTitle>
-            <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+            <div className="mt-1 flex flex-wrap items-center gap-1 sm:mt-1.5 sm:gap-1.5">
               {trial.study_status && (
-                <Badge variant={statusColor} className="text-[10px]">
+                <Badge variant={statusColor} className="text-[9px] sm:text-[10px]">
                   {trial.study_status}
                 </Badge>
               )}
               {trial.phases && (
-                <Badge variant="outline" className="text-[10px]">
+                <Badge variant="outline" className="text-[9px] sm:text-[10px]">
                   {trial.phases}
                 </Badge>
               )}
@@ -213,10 +214,10 @@ function TrialCard({ trial, rank }: { trial: TrialMatch; rank: number }) {
 
       {/* Match reasoning */}
       {trial.match_reasoning && (
-        <CardContent className="pt-0">
-          <div className="rounded-lg bg-primary/5 px-3 py-2">
-            <p className="text-xs font-medium text-primary">Why this matches:</p>
-            <p className="mt-0.5 text-xs text-foreground/80">
+        <CardContent className="px-3 pt-0 sm:px-6">
+          <div className="rounded-lg bg-primary/5 px-2.5 py-2 sm:px-3">
+            <p className="text-[10px] font-medium text-primary sm:text-xs">Why this matches:</p>
+            <p className="mt-0.5 text-[10px] leading-relaxed text-foreground/80 sm:text-xs">
               {trial.match_reasoning}
             </p>
           </div>
@@ -225,34 +226,34 @@ function TrialCard({ trial, rank }: { trial: TrialMatch; rank: number }) {
 
       {/* Expandable details */}
       {expanded && (
-        <CardContent className="space-y-3 pt-0">
+        <CardContent className="space-y-3 px-3 pt-0 sm:px-6">
           <Separator />
 
           {trial.conditions && (
             <div>
-              <p className="text-xs font-medium text-muted-foreground">Conditions</p>
-              <p className="text-xs">{trial.conditions}</p>
+              <p className="text-[10px] font-medium text-muted-foreground sm:text-xs">Conditions</p>
+              <p className="text-[11px] sm:text-xs">{trial.conditions}</p>
             </div>
           )}
 
           {trial.interventions && (
             <div>
-              <p className="text-xs font-medium text-muted-foreground">Interventions</p>
-              <p className="text-xs">{trial.interventions}</p>
+              <p className="text-[10px] font-medium text-muted-foreground sm:text-xs">Interventions</p>
+              <p className="text-[11px] sm:text-xs">{trial.interventions}</p>
             </div>
           )}
 
           {trial.sponsor && (
             <div>
-              <p className="text-xs font-medium text-muted-foreground">Sponsor</p>
-              <p className="text-xs">{trial.sponsor}</p>
+              <p className="text-[10px] font-medium text-muted-foreground sm:text-xs">Sponsor</p>
+              <p className="text-[11px] sm:text-xs">{trial.sponsor}</p>
             </div>
           )}
 
           {trial.brief_summary && (
             <div>
-              <p className="text-xs font-medium text-muted-foreground">Summary</p>
-              <p className="mt-1 max-h-40 overflow-y-auto text-xs leading-relaxed">
+              <p className="text-[10px] font-medium text-muted-foreground sm:text-xs">Summary</p>
+              <p className="mt-1 max-h-32 overflow-y-auto text-[11px] leading-relaxed sm:max-h-40 sm:text-xs">
                 {trial.brief_summary}
               </p>
             </div>
@@ -260,11 +261,12 @@ function TrialCard({ trial, rank }: { trial: TrialMatch; rank: number }) {
         </CardContent>
       )}
 
-      <CardFooter className="flex items-center justify-between">
+      <CardFooter className="flex items-center justify-between px-3 sm:px-6">
         <Button
           variant="ghost"
           size="xs"
           onClick={() => setExpanded(!expanded)}
+          className="active:bg-muted"
         >
           {expanded ? (
             <>
@@ -284,9 +286,10 @@ function TrialCard({ trial, rank }: { trial: TrialMatch; rank: number }) {
             href={trial.study_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-xs text-primary underline-offset-2 hover:underline"
+            className="inline-flex items-center gap-1 rounded-md px-1.5 py-1 text-[11px] text-primary underline-offset-2 hover:underline active:bg-primary/5 sm:text-xs"
           >
-            ClinicalTrials.gov
+            <span className="hidden sm:inline">ClinicalTrials.gov</span>
+            <span className="sm:hidden">View Trial</span>
             <IconExternalLink className="h-3 w-3" />
           </a>
         )}

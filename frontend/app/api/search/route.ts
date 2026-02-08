@@ -331,14 +331,17 @@ export async function POST(request: NextRequest) {
       docLookup[gotIds[i]] = gotDocs[i] || "";
     }
 
-    // Sort by rerank score, filter out low-confidence results, take top nResults
-    const sortedIds = [...gotIds]
-      .sort(
-        (a, b) =>
-          (rerankLookup[b]?.score || 0) - (rerankLookup[a]?.score || 0)
-      )
-      .filter((tid) => (rerankLookup[tid]?.score || 0) > MIN_MATCH_SCORE)
-      .slice(0, nResults);
+    // Sort by rerank score, prefer results above threshold, but always return top nResults
+    const sorted = [...gotIds].sort(
+      (a, b) =>
+        (rerankLookup[b]?.score || 0) - (rerankLookup[a]?.score || 0)
+    );
+    const aboveThreshold = sorted.filter(
+      (tid) => (rerankLookup[tid]?.score || 0) > MIN_MATCH_SCORE
+    );
+    const sortedIds = aboveThreshold.length > 0
+      ? aboveThreshold.slice(0, nResults)
+      : sorted.slice(0, nResults);
 
     const results = sortedIds.map((tid) => {
       const meta = metaLookup[tid] || {};
