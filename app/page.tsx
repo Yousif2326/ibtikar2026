@@ -1,5 +1,3 @@
-
-//Programtically add user roles https://workos.com/docs/reference/authkit/organization-membership/update
 import Link from 'next/link';
 import {
   getSignUpUrl,
