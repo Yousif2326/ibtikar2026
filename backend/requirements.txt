@@ -1,30 +1,8 @@
-# Ingest and query clinical trials in ChromaDB
+# Ingest clinical trials into ChromaDB Cloud
 pandas>=2.0
 openpyxl>=3.1
 chromadb>=0.4
-sentence-transformers>=2.2
-
-# Search API
-fastapi>=0.104
-uvicorn[standard]>=0.24
-
-# OCR
-pytesseract>=0.3.10
-Pillow>=10.0
-
-# LLM (OpenAI GPT-4o)
 openai>=1.30
-
-# File upload handling
-python-multipart>=0.0.9
-
-# Rate limiting
-slowapi>=0.1.9
-
-# WorkOS token verification
-pyjwt>=2.8
-cryptography>=42.0
-httpx>=0.27
 
 # Environment
 python-dotenv>=1.0

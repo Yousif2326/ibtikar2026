@@ -1,6 +1,9 @@
 """
-Application configuration loaded from environment variables.
-Validates all required settings on import.
+Configuration for the ingestion script.
+Loads environment variables from .env in the backend directory.
+
+The backend is now ingestion-only — it loads clinical trial data from CSV
+into ChromaDB Cloud. All search/query functionality lives in the frontend.
 """
 
 import os
@@ -24,35 +27,14 @@ def _require_env(key: str) -> str:
     return value
 
 
-# --- OpenAI ----------------------------------------------------------------
+# --- OpenAI (for text-embedding-3-small during ingestion) -------------------
 OPENAI_API_KEY: str = _require_env("OPENAI_API_KEY")
 
-# --- WorkOS (backend token verification) -----------------------------------
-WORKOS_API_KEY: str = _require_env("WORKOS_API_KEY")
-WORKOS_CLIENT_ID: str = _require_env("WORKOS_CLIENT_ID")
+# --- ChromaDB Cloud ---------------------------------------------------------
+CHROMA_API_KEY: str = _require_env("CHROMA_API_KEY")
+CHROMA_TENANT: str = _require_env("CHROMA_TENANT")
+CHROMA_DATABASE: str = _require_env("CHROMA_DATABASE")
 
-# --- Server -----------------------------------------------------------------
-BACKEND_PORT: int = int(os.getenv("BACKEND_PORT", "8000"))
-ALLOWED_ORIGINS: list[str] = [
-    o.strip()
-    for o in os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
-    if o.strip()
-]
-
-# --- HIPAA / session --------------------------------------------------------
-SESSION_TIMEOUT_MINUTES: int = int(os.getenv("SESSION_TIMEOUT_MINUTES", "15"))
-
-# --- Rate limits (requests per minute) -------------------------------------
-RATE_LIMIT_OCR: str = f"{os.getenv('RATE_LIMIT_OCR', '10')}/minute"
-RATE_LIMIT_MATCH: str = f"{os.getenv('RATE_LIMIT_MATCH', '20')}/minute"
-RATE_LIMIT_SEARCH: str = f"{os.getenv('RATE_LIMIT_SEARCH', '30')}/minute"
-
-# --- Paths ------------------------------------------------------------------
-CHROMA_PATH: str = str(Path(__file__).resolve().parent / "chroma_clinical_trials")
+# --- Collection settings ----------------------------------------------------
 COLLECTION_NAME: str = "clinical_trials"
-EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
-
-# --- File upload limits (HIPAA: minimise attack surface) --------------------
-MAX_UPLOAD_SIZE_BYTES: int = 10 * 1024 * 1024  # 10 MB
-ALLOWED_IMAGE_TYPES: set[str] = {"image/jpeg", "image/png", "image/webp", "image/tiff"}
-ALLOWED_FILE_EXTENSIONS: set[str] = {".jpg", ".jpeg", ".png", ".webp", ".tiff", ".tif"}
+EMBEDDING_MODEL: str = "text-embedding-3-small"
