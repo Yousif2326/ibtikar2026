@@ -33,6 +33,9 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# ChromaDB index (large; regenerate with database/ingest_clinical_trials_to_chromadb.py)
+database/chroma_clinical_trials/
+
 # vercel
 .vercel
 

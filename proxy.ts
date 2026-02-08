@@ -1,14 +1,15 @@
 import { authkitMiddleware } from '@workos-inc/authkit-nextjs';
 
-// In middleware auth mode, each page is protected by default.
-// Exceptions are configured via the `unauthenticatedPaths` option.
+// Redirect URI must match your callback route and WorkOS Dashboard redirects.
+const redirectUri =
+  process.env.NEXT_PUBLIC_WORKOS_REDIRECT_URI ?? 'http://localhost:3000/callback';
+
 export default authkitMiddleware({
+  redirectUri,
   middlewareAuth: {
     enabled: true,
     unauthenticatedPaths: ['/'],
   },
 });
 
-// Match against pages that require authentication
-// Leave this out if you want authentication on every page in your application
-export const config = { matcher: ['/', '/account/:page*'] };
+export const config = { matcher: ['/', '/account/:page*', '/callback'] };
