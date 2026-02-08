@@ -1,0 +1,23 @@
+# Environment variables
+.env
+
+# ChromaDB persistent storage (large, regenerate with ingest script)
+chroma_clinical_trials/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
