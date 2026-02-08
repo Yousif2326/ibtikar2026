@@ -1,6 +1,5 @@
 import { authkitMiddleware } from '@workos-inc/authkit-nextjs';
 
-// Redirect URI must match your callback route and WorkOS Dashboard redirects.
 const redirectUri =
   process.env.NEXT_PUBLIC_WORKOS_REDIRECT_URI ?? 'http://localhost:3000/callback';
 
@@ -12,4 +11,6 @@ export default authkitMiddleware({
   },
 });
 
-export const config = { matcher: ['/', '/account/:page*', '/callback'] };
+export const config = {
+  matcher: ['/', '/dashboard/:path*', '/account/:path*', '/callback','/api/:path*'],
+};
