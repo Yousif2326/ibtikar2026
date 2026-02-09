@@ -32,7 +32,7 @@ export default function Hero({ signUpUrl }: { signUpUrl: string }) {
           <div className="max-w-2xl">
             <Badge variant="secondary" className="animate-fade-in-up mb-6 gap-2 px-3 py-1 text-xs font-semibold">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-              AI-Powered Clinical Trial Matching
+              Treatment Trial Match
             </Badge>
 
             <h1 className="font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl animate-fade-in-up delay-100">
@@ -87,7 +87,7 @@ export default function Hero({ signUpUrl }: { signUpUrl: string }) {
             <div className="relative">
               {/* Main card visual */}
               <div className="rounded-2xl border border-border/60 bg-card p-8 shadow-2xl shadow-primary/[0.08]">
-                {/* Simulated patient-trial match UI */}
+                {/* Simulated treatment trial match UI */}
                 <div className="mb-5 flex items-center gap-3">
                   <div className="h-3 w-3 rounded-full bg-primary animate-pulse" />
                   <span className="text-sm font-medium text-foreground">AI Matching Engine Active</span>
@@ -121,7 +121,7 @@ export default function Hero({ signUpUrl }: { signUpUrl: string }) {
                   </div>
                 </div>
 
-                {/* Trial matches */}
+                {/* Treatment trial matches */}
                 <div className="space-y-3">
                   {[
                     { match: '98%', title: 'NCT04761822 - Osimertinib + Savolitinib', phase: 'Phase III' },

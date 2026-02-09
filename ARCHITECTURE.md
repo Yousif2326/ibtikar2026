@@ -1,4 +1,4 @@
-# Clinical Trial Matcher — Overall Architecture
+# Treatment Trial Match — Overall Architecture
 
 ```mermaid
 flowchart TB

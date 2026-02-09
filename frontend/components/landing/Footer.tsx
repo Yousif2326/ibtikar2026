@@ -6,7 +6,6 @@ const footerLinks = {
   Product: [
     { label: 'How It Works', href: '#how-it-works' },
     { label: 'Benefits', href: '#benefits' },
-    { label: 'Testimonials', href: '#testimonials' },
     { label: 'FAQ', href: '#faq' },
   ],
   Resources: [
@@ -18,7 +17,7 @@ const footerLinks = {
   Legal: [
     { label: 'Privacy Policy', href: '#' },
     { label: 'Terms of Service', href: '#' },
-    { label: 'HIPAA Compliance', href: '#' },
+    { label: 'HIPAA Status', href: '#hipaa-disclaimer' },
     { label: 'Cookie Policy', href: '#' },
   ],
 };
@@ -57,11 +56,11 @@ export default function Footer() {
                 </svg>
               </div>
               <span className="font-display text-lg font-bold tracking-tight text-foreground">
-                TrialMatch
+                Treatment Trial Match
               </span>
             </Link>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
-              AI-powered clinical trial matching that connects patients with
+              AI-powered treatment trial matching that connects patients with
               innovative treatments while helping trials recruit faster and more efficiently.
             </p>
             <div className="mt-6 flex gap-3">
@@ -100,12 +99,16 @@ export default function Footer() {
 
         <Separator className="my-10 bg-border/50" />
 
+        <div id="hipaa-disclaimer" className="mb-6 rounded-lg border border-amber-200 bg-amber-50/80 dark:border-amber-800 dark:bg-amber-950/30 px-4 py-3 text-xs text-muted-foreground">
+          <strong className="text-foreground">HIPAA status:</strong> Treatment Trial Match is not HIPAA compliant yet. Do not use with protected health information (PHI) in contexts that require HIPAA compliance. Patient data is processed ephemerally and not stored.
+        </div>
+
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} TrialMatch. All rights reserved.
+            &copy; {new Date().getFullYear()} Treatment Trial Match. All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground">
-            HIPAA-compliant. All patient data is processed ephemerally and never stored.
+            Not HIPAA compliant yet. All patient data is processed ephemerally and never stored.
           </p>
         </div>
       </div>

@@ -47,7 +47,7 @@ export default function Header({ signUpUrl }: { signUpUrl: string }) {
               </svg>
             </div>
             <span className="font-display text-lg font-bold tracking-tight text-foreground">
-              TrialMatch
+              Treatment Trial Match
             </span>
           </Link>
 
@@ -58,9 +58,6 @@ export default function Header({ signUpUrl }: { signUpUrl: string }) {
             </a>
             <a href="#benefits" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
               Benefits
-            </a>
-            <a href="#testimonials" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-              Testimonials
             </a>
             <a href="#faq" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
               FAQ
@@ -100,9 +97,6 @@ export default function Header({ signUpUrl }: { signUpUrl: string }) {
               </a>
               <a href="#benefits" onClick={() => setMobileOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
                 Benefits
-              </a>
-              <a href="#testimonials" onClick={() => setMobileOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
-                Testimonials
               </a>
               <a href="#faq" onClick={() => setMobileOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
                 FAQ

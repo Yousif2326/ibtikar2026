@@ -29,11 +29,11 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Clinical Trial Matcher | AI-Powered Patient-Trial Matching",
+  title: "Treatment Trial Match | AI-Powered Patient-Trial Matching",
   description: "Streamline clinical trial recruitment with AI. Match patients to trials faster, giving patients access to innovative treatments while accelerating research.",
   keywords: ["clinical trials", "patient matching", "clinical trial recruitment", "AI healthcare", "trial enrollment"],
   openGraph: {
-    title: "Clinical Trial Matcher | AI-Powered Patient-Trial Matching",
+    title: "Treatment Trial Match | AI-Powered Patient-Trial Matching",
     description: "Streamline clinical trial recruitment with AI. Match patients to trials faster, giving patients access to innovative treatments while accelerating research.",
   },
 };

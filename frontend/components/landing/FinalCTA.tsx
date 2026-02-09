@@ -8,7 +8,7 @@ import { useScrollReveal } from './useScrollReveal';
 const perks = [
   'Free tier available',
   'No credit card required',
-  'HIPAA compliant',
+  'Privacy-focused (not HIPAA compliant yet)',
   'Set up in minutes',
 ];
 

@@ -38,7 +38,7 @@ export default function HowItWorks() {
             How It Works
           </p>
           <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            From patient data to trial match in minutes
+            From patient data to treatment trial match in minutes
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             Three simple steps to connect patients with life-changing clinical trials.

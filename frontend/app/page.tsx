@@ -7,7 +7,6 @@ import Header from '@/components/landing/Header';
 import Hero from '@/components/landing/Hero';
 import HowItWorks from '@/components/landing/HowItWorks';
 import Benefits from '@/components/landing/Benefits';
-import Testimonials from '@/components/landing/Testimonials';
 import FAQ from '@/components/landing/FAQ';
 import FinalCTA from '@/components/landing/FinalCTA';
 import Footer from '@/components/landing/Footer';
@@ -28,7 +27,6 @@ export default async function HomePage() {
         <Hero signUpUrl={signUpUrl} />
         <HowItWorks />
         <Benefits />
-        <Testimonials />
         <FAQ />
         <FinalCTA signUpUrl={signUpUrl} />
       </main>

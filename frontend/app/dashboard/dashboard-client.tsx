@@ -52,7 +52,7 @@ export function DashboardClient({ user, signOutAction }: DashboardClientProps) {
       setStep('results');
     } catch (err: unknown) {
       const error = err as Error;
-      setError(error.message || 'Trial matching failed. Please try again.');
+      setError(error.message || 'Treatment trial matching failed. Please try again.');
     } finally {
       setIsProcessing(false);
     }
@@ -73,7 +73,7 @@ export function DashboardClient({ user, signOutAction }: DashboardClientProps) {
           <div className="mx-auto flex h-12 max-w-5xl items-center justify-between px-3 sm:h-14 sm:px-4">
             <div className="flex items-center gap-1.5 sm:gap-2">
               <IconStethoscope className="h-5 w-5 shrink-0 text-primary" />
-              <span className="text-xs font-semibold sm:text-sm">Clinical Trial Matcher</span>
+              <span className="text-xs font-semibold sm:text-sm">Treatment Trial Match</span>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-3">
               <span className="hidden text-xs text-muted-foreground xs:inline sm:inline">
@@ -150,7 +150,7 @@ export function DashboardClient({ user, signOutAction }: DashboardClientProps) {
         {/* Footer */}
         <footer className="mt-8 border-t px-3 py-4 sm:mt-12 sm:px-4">
           <p className="text-center text-[11px] text-muted-foreground sm:text-xs">
-            All patient data is processed ephemerally and never stored. HIPAA-compliant.
+            All patient data is processed ephemerally and never stored. Not HIPAA compliant yet.
           </p>
         </footer>
       </div>

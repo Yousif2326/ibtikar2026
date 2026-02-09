@@ -17,7 +17,7 @@ const faqs = [
   {
     question: 'Is patient data stored or shared?',
     answer:
-      'No. All patient data is processed ephemerally -- meaning it is used only for the duration of the matching session and then discarded. We never store, log, or share patient health information. Our platform is HIPAA-compliant by design.',
+      'No. All patient data is processed ephemerally -- meaning it is used only for the duration of the matching session and then discarded. We never store, log, or share patient health information. We are not HIPAA compliant yet; use accordingly.',
   },
   {
     question: 'What types of clinical trials are covered?',
@@ -42,7 +42,7 @@ const faqs = [
   {
     question: 'Is there a free trial available?',
     answer:
-      'Yes. We offer a free tier that allows healthcare professionals to run a limited number of patient-trial matches per month. For higher volume needs, we offer professional and enterprise plans with unlimited matching and priority support.',
+      'Yes. We offer a free tier that allows healthcare professionals to run a limited number of treatment trial matches per month. For higher volume needs, we offer professional and enterprise plans with unlimited matching and priority support.',
   },
   {
     question: 'Do I need special training to use the platform?',
@@ -65,7 +65,7 @@ export default function FAQ() {
             Frequently asked questions
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Everything you need to know about TrialMatch.
+            Everything you need to know about Treatment Trial Match.
           </p>
         </div>
 

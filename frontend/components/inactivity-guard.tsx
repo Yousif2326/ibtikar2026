@@ -11,7 +11,7 @@ interface InactivityGuardProps {
 }
 
 /**
- * HIPAA-compliant inactivity auto-logout.
+ * Inactivity auto-logout (privacy-focused; not HIPAA compliant yet).
  * Monitors mouse, keyboard, touch, and scroll events.
  * After `timeoutMinutes` of no activity, calls `onTimeout` (signs the user out).
  * Shows a warning banner 2 minutes before timeout.

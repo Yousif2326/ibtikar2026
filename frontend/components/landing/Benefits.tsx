@@ -16,7 +16,7 @@ const benefits = [
     icon: IconBolt,
     title: 'Instant Matching',
     description:
-      'Go from patient intake to trial matches in under 60 seconds. No more hours of manual database searching.',
+      'Go from patient intake to treatment trial matches in under 60 seconds. No more hours of manual database searching.',
     color: 'text-amber-600',
     bg: 'bg-amber-500/10',
   },
@@ -30,9 +30,9 @@ const benefits = [
   },
   {
     icon: IconShieldCheck,
-    title: 'HIPAA Compliant',
+    title: 'Privacy-Focused',
     description:
-      'All patient data is processed ephemerally and never stored. Built from the ground up with healthcare privacy in mind.',
+      'All patient data is processed ephemerally and never stored. We are not HIPAA compliant yet; use accordingly. Built with healthcare privacy in mind.',
     color: 'text-emerald-600',
     bg: 'bg-emerald-500/10',
   },
@@ -70,13 +70,13 @@ export default function Benefits() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8" ref={ref}>
         <div className="mx-auto max-w-2xl text-center" data-reveal>
           <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
-            Why TrialMatch
+            Why Treatment Trial Match
           </p>
           <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Built for healthcare professionals who value precision
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Every feature is designed to make clinical trial matching faster, safer, and more accurate.
+            Every feature is designed to make treatment trial matching faster, safer, and more accurate.
           </p>
         </div>
 
